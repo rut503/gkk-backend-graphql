@@ -1,15 +1,15 @@
 from mongoengine import Document, StringField, IntField, ObjectIdField, DateTimeField
 
 class ReviewForFoodItemModel(Document):
-    food_item_id = ObjectIdField()
-    consumer_id = ObjectIdField()
+    foodItemId = ObjectIdField()
+    consumerId = ObjectIdField()
     rating = IntField()
     title = StringField()
     description = StringField()
-    date_created = DateTimeField()
-    date_updated = DateTimeField()
+    dateCreated = DateTimeField()
+    dateUpdated = DateTimeField()
     
     meta = {
         "db_alias": "gkk",
-        "collection": "review_for_food_item"
+        "collection": "reviewForFoodItem"
     }

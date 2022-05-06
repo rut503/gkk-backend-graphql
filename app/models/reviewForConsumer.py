@@ -1,9 +1,8 @@
-from mongoengine import Document, ObjectIdField, IntField, StringField, DateTimeField
+from mongoengine import Document, IntField, StringField, ObjectIdField, DateTimeField
 
-
-class ReviewForProducerModel(Document):
-    producerId = ObjectIdField()
+class ReviewForConsumerModel(Document):
     consumerId = ObjectIdField()
+    producerId = ObjectIdField()
     rating = IntField()
     title = StringField()
     description = StringField()
@@ -12,5 +11,5 @@ class ReviewForProducerModel(Document):
 
     meta = {
         "db_alias": "gkk",
-        "collection": "reviewForProducer"
+        "collection": "reviewForConsumer"
     }

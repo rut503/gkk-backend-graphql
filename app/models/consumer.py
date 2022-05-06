@@ -1,7 +1,7 @@
-from mongoengine import Document, StringField, DictField, ListField, IntField, ObjectIdField, DateTimeField
+from mongoengine import Document, IntField, StringField, DateTimeField, ObjectIdField, DictField, ListField
 
 
-class ProducerModel(Document):
+class ConsumerModel(Document):
     firstName = StringField()
     lastName = StringField()
     phoneNumber = StringField()
@@ -9,13 +9,12 @@ class ProducerModel(Document):
     photo = StringField()
     bio = StringField()
     address = DictField()
-    foodItems = ListField(ObjectIdField())
     rating = IntField()
-    activeOrders = ListField(ObjectIdField())
+    activeOrders = ListField(ObjectIdField)
     dateCreated = DateTimeField()
     dateUpdated = DateTimeField()
 
     meta = {
         "db_alias": "gkk",
-        "collection": "producer"
+        "collection": "consumer"
     }

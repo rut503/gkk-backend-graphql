@@ -1,4 +1,5 @@
 from datetime import date
+from typing import List
 import strawberry
 
 from app.models.reviewForFoodItem import ReviewForFoodItemModel
@@ -15,18 +16,18 @@ class ReviewForFoodItem:
     dateCreated: date
     dateUpdated: date
 
-def reviewsForFoodItemResolver(foodItemId: strawberry.ID):
-    reviews = ReviewForFoodItemModel.objects(food_item_id=foodItemId)
+def allReviewsForFoodItemResolver(foodItemId: strawberry.ID) -> List[ReviewForFoodItem]:
+    reviews = ReviewForFoodItemModel.objects(foodItemId=foodItemId)
     listOfReviews = []
     for review in reviews:
         listOfReviews.append(ReviewForFoodItem(
             id=review.id,
-            foodItemId=review.food_item_id,
-            consumerId=review.consumer_id,
+            foodItemId=review.foodItemId,
+            consumerId=review.consumerId,
             rating=review.rating,
             title=review.title,
             description=review.description,
-            dateCreated=review.date_created,
-            dateUpdated=review.date_updated
+            dateCreated=review.dateCreated,
+            dateUpdated=review.dateUpdated
         ))
     return listOfReviews

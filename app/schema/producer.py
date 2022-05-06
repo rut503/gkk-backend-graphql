@@ -3,51 +3,44 @@ import typing
 import strawberry
 
 from app.models.producer import ProducerModel
-
-
-@strawberry.type
-class Address:
-    street: str
-    city: str
-    state: str
-    zip_code: str
+from app.schema.address import Address
 
 @strawberry.type
 class Producer:
     id: strawberry.ID
-    first_name: str
-    last_name: str
-    phone_number: str
-    email_address: str
+    firstName: str
+    lastName: str
+    phoneNumber: str
+    email: str
     photo: str
     bio: str
     address: Address
-    food_items: typing.List[strawberry.ID]
+    foodItems: typing.List[strawberry.ID]
     rating: int
-    active_orders: typing.List[strawberry.ID]
-    date_created: date
-    date_updated: date
+    activeOrders: typing.List[strawberry.ID]
+    dateCreated: date
+    dateUpdated: date
 
 def producerResolver(id: strawberry.ID) -> Producer:
-        producer = ProducerModel.objects(id=id)[0]
+        producer = ProducerModel.objects(id=id).first()
 
         address = Address( street=producer.address["street"],
                            city=producer.address["city"],
                            state=producer.address["state"],
-                           zip_code=producer.address["zip_code"] )
+                           zipCode=producer.address["zipCode"] )
         
         return Producer(
             id=producer.id,
-            first_name=producer.first_name,
-            last_name=producer.last_name,
-            phone_number=producer.phone_number,
-            email_address=producer.email_address,
+            firstName=producer.firstName,
+            lastName=producer.lastName,
+            phoneNumber=producer.phoneNumber,
+            email=producer.email,
             photo=producer.photo,
             bio=producer.bio,
             address=address,
-            food_items=producer.food_items,
+            foodItems=producer.foodItems,
             rating=producer.rating,
-            active_orders=producer.active_orders,
-            date_created=producer.date_created,
-            date_updated=producer.date_updated
+            activeOrders=producer.activeOrders,
+            dateCreated=producer.dateCreated,
+            dateUpdated=producer.dateUpdated
         )
