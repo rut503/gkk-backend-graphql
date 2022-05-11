@@ -9,9 +9,9 @@ class ProducerModel(Document):
     photo = StringField()
     bio = StringField()
     address = DictField()
-    foodItems = ListField(ObjectIdField())
+    foodItemIds = ListField(ObjectIdField())
     rating = IntField()
-    activeOrders = ListField(ObjectIdField())
+    activeOrderIds = ListField(ObjectIdField())
     dateCreated = DateTimeField()
     dateUpdated = DateTimeField()
 

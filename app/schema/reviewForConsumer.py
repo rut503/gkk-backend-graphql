@@ -3,7 +3,7 @@ from typing import List
 import strawberry
 
 from app.models.reviewForConsumer import ReviewForConsumerModel
-
+from app.schema.producer import Producer, resolveProducer
 
 @strawberry.type
 class ReviewForConsumer:
@@ -16,7 +16,23 @@ class ReviewForConsumer:
     dateCreated: date
     dateUpdated: date
 
-def allReviewsForConsumerResolver(consumerId: strawberry.ID) -> List[ReviewForConsumer]:
+    @strawberry.field
+    def producer(self) -> Producer:
+        return resolveProducer(id=self.producerId)
+
+def resolveReviewForConsumer(id: strawberry.ID) -> ReviewForConsumer:
+    review = ReviewForConsumerModel.objects(id=id).first()
+    return ReviewForConsumer( id=review.id,
+                              consumerId=review.consumerId,
+                              producerId=review.producerId,
+                              rating=review.rating,
+                              title=review.title,
+                              description=review.description,
+                              dateCreated=review.dateCreated,
+                              dateUpdated=review.dateUpdated
+                            )
+
+def resolveReviewsForConsumer(consumerId: strawberry.ID) -> List[ReviewForConsumer]:
     reviews = ReviewForConsumerModel.objects(consumerId=consumerId)
     listOfReviews = []
     for review in reviews:

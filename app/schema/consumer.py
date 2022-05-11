@@ -2,8 +2,8 @@ from datetime import date
 from typing import List
 import strawberry
 
-from app.schema.address import Address
 from app.models.consumer import ConsumerModel
+from app.schema.address import Address
 
 
 @strawberry.type
@@ -17,11 +17,11 @@ class Consumer:
     bio: str
     address: Address
     rating: int
-    activeOrders: List[strawberry.ID]
+    activeOrderIds: List[strawberry.ID]
     dateCreated: date
     dateUpdated: date
 
-def consumerResolver(id: strawberry.ID) -> Consumer:
+def resolveConsumer(id: strawberry.ID) -> Consumer:
     consumer = ConsumerModel.objects(id=id).first()
 
     address = Address(street=consumer.address["street"],
@@ -39,7 +39,7 @@ def consumerResolver(id: strawberry.ID) -> Consumer:
                     bio=consumer.bio,
                     address=address,
                     rating=consumer.rating,
-                    activeOrders=consumer.activeOrders,
+                    activeOrderIds=consumer.activeOrderIds,
                     dateCreated=consumer.dateCreated,
                     dateUpdated=consumer.dateUpdated
                    )

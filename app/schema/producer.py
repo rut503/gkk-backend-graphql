@@ -1,9 +1,10 @@
 from datetime import date
-import typing
+from typing import List
 import strawberry
 
-from app.models.producer import ProducerModel
 from app.schema.address import Address
+from app.models.producer import ProducerModel
+
 
 @strawberry.type
 class Producer:
@@ -15,13 +16,13 @@ class Producer:
     photo: str
     bio: str
     address: Address
-    foodItems: typing.List[strawberry.ID]
+    foodItemIds: List[strawberry.ID]
     rating: int
-    activeOrders: typing.List[strawberry.ID]
+    activeOrderIds: List[strawberry.ID]
     dateCreated: date
     dateUpdated: date
 
-def producerResolver(id: strawberry.ID) -> Producer:
+def resolveProducer(id: strawberry.ID) -> Producer:
         producer = ProducerModel.objects(id=id).first()
 
         address = Address( street=producer.address["street"],
@@ -38,9 +39,9 @@ def producerResolver(id: strawberry.ID) -> Producer:
             photo=producer.photo,
             bio=producer.bio,
             address=address,
-            foodItems=producer.foodItems,
+            foodItemIds=producer.foodItemIds,
             rating=producer.rating,
-            activeOrders=producer.activeOrders,
+            activeOrderIds=producer.activeOrderIds,
             dateCreated=producer.dateCreated,
             dateUpdated=producer.dateUpdated
         )

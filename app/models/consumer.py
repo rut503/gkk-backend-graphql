@@ -10,7 +10,7 @@ class ConsumerModel(Document):
     bio = StringField()
     address = DictField()
     rating = IntField()
-    activeOrders = ListField(ObjectIdField)
+    activeOrderIds = ListField(ObjectIdField())
     dateCreated = DateTimeField()
     dateUpdated = DateTimeField()
 
