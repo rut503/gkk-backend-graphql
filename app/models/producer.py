@@ -1,5 +1,6 @@
-from mongoengine import Document, StringField, DictField, ListField, IntField, ObjectIdField, DateTimeField
+from mongoengine import Document, StringField, EmbeddedDocumentField, ListField, IntField, ObjectIdField, DateTimeField
 
+from app.models.address import Address
 
 class ProducerModel(Document):
     firstName = StringField()
@@ -8,7 +9,7 @@ class ProducerModel(Document):
     email = StringField()
     photo = StringField()
     bio = StringField()
-    address = DictField()
+    address = EmbeddedDocumentField(Address)
     foodItemIds = ListField(ObjectIdField())
     rating = IntField()
     activeOrderIds = ListField(ObjectIdField())

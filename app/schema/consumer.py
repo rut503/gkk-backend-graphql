@@ -21,13 +21,17 @@ class Consumer:
     dateCreated: date
     dateUpdated: date
 
+    # @strawberry.field
+    # def activeOrders(self) -> List[ActiveOrder]:
+    #     return resolveActiveOrders(consumerId=self.id)
+
 def resolveConsumer(id: strawberry.ID) -> Consumer:
     consumer = ConsumerModel.objects(id=id).first()
 
-    address = Address(street=consumer.address["street"],
-                      city=consumer.address["city"],
-                      state=consumer.address["state"],
-                      zipCode=consumer.address["zipCode"],
+    address = Address(street=consumer.address.street,
+                      city=consumer.address.city,
+                      state=consumer.address.state,
+                      zipCode=consumer.address.zipCode,
                      )
     
     return Consumer(id=consumer.id,

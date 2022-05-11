@@ -7,6 +7,7 @@ from app.schema.foodItem import FoodItem, resolveFoodItem, resolveFoodItems
 from app.schema.reviewForProducer import ReviewForProducer, resolveReviewForProducer, resolveReviewsForProducer
 from app.schema.reviewForConsumer import ReviewForConsumer, resolveReviewForConsumer, resolveReviewsForConsumer
 from app.schema.reviewForFoodItem import ReviewForFoodItem, resolveReviewForFoodItem, resolveReviewsForFoodItem
+from app.schema.activeOrder import ActiveOrder, resolveActiveOrder
 
 
 @strawberry.type
@@ -26,3 +27,5 @@ class Query:
     
     reviewForFoodItem: ReviewForFoodItem = strawberry.field(resolver=resolveReviewForFoodItem)
     reviewsForFoodItem: List[ReviewForFoodItem] = strawberry.field(resolver=resolveReviewsForFoodItem)
+
+    activeOrder: ActiveOrder = strawberry.field(resolver=resolveActiveOrder)

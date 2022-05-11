@@ -1,4 +1,6 @@
-from mongoengine import Document, IntField, StringField, DateTimeField, ObjectIdField, DictField, ListField
+from mongoengine import Document, IntField, StringField, DateTimeField, ObjectIdField, EmbeddedDocumentField, ListField
+
+from app.models.address import Address
 
 
 class ConsumerModel(Document):
@@ -8,7 +10,7 @@ class ConsumerModel(Document):
     email = StringField()
     photo = StringField()
     bio = StringField()
-    address = DictField()
+    address = EmbeddedDocumentField(Address)
     rating = IntField()
     activeOrderIds = ListField(ObjectIdField())
     dateCreated = DateTimeField()

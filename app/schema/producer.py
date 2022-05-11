@@ -4,6 +4,7 @@ import strawberry
 
 from app.schema.address import Address
 from app.models.producer import ProducerModel
+from app.schema.foodItem import FoodItem, resolveFoodItems
 
 
 @strawberry.type
@@ -22,13 +23,21 @@ class Producer:
     dateCreated: date
     dateUpdated: date
 
+    @strawberry.field
+    def foodItems(self) -> List[FoodItem]:
+        return resolveFoodItems(producerId=self.id)
+    
+    # @strawberry.field
+    # def activeOrders(self) -> List[ActiveOrder]:
+    #     return resolveActiveOrders(producerId=self.id)
+
 def resolveProducer(id: strawberry.ID) -> Producer:
         producer = ProducerModel.objects(id=id).first()
 
-        address = Address( street=producer.address["street"],
-                           city=producer.address["city"],
-                           state=producer.address["state"],
-                           zipCode=producer.address["zipCode"] )
+        address = Address( street=producer.address.street,
+                           city=producer.address.city,
+                           state=producer.address.state,
+                           zipCode=producer.address.zipCode )
         
         return Producer(
             id=producer.id,

@@ -3,15 +3,15 @@ from mongoengine import Document, IntField, StringField, DateTimeField, ObjectId
 
 class FoodItemModel(Document):
     producerId = ObjectIdField()
-    dietPreference = ListField(StringField())
+    dietPreferences = ListField(StringField())
     description = StringField()
     photo = StringField()
     price = FloatField()
     rating = IntField()
     name = StringField()
     portionSize = FloatField()
-    spicy = IntField()
-    allergy = ListField(StringField())
+    spiciness = IntField()
+    allergies = ListField(StringField())
     dateCreated = DateTimeField()
     dateUpdated = DateTimeField()
 
