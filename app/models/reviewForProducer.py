@@ -1,6 +1,7 @@
 from mongoengine import Document, ObjectIdField, IntField, StringField, DateTimeField
 
 
+# TODO: Add validations to all fields
 class ReviewForProducerModel(Document):
     producerId = ObjectIdField()
     consumerId = ObjectIdField()

@@ -5,6 +5,8 @@ import strawberry
 from app.models.reviewForConsumer import ReviewForConsumerModel
 from app.schema.producer import Producer, resolveProducer
 
+
+# TODO: Add validations to all fields
 @strawberry.type
 class ReviewForConsumer:
     id: strawberry.ID

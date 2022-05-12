@@ -6,6 +6,7 @@ from app.models.reviewForFoodItem import ReviewForFoodItemModel
 from app.schema.consumer import Consumer, resolveConsumer
 
 
+# TODO: Add validations to all fields
 @strawberry.type
 class ReviewForFoodItem:
     id: strawberry.ID

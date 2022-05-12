@@ -5,8 +5,10 @@ import strawberry
 from app.schema.address import Address
 from app.models.producer import ProducerModel
 from app.schema.foodItem import FoodItem, resolveFoodItems
+# from app.schema.activeOrder import ActiveOrder, resolveActiveOrders
 
 
+# TODO: Add validations to all fields
 @strawberry.type
 class Producer:
     id: strawberry.ID
@@ -27,6 +29,7 @@ class Producer:
     def foodItems(self) -> List[FoodItem]:
         return resolveFoodItems(producerId=self.id)
     
+    # TODO: fix circular import problem first
     # @strawberry.field
     # def activeOrders(self) -> List[ActiveOrder]:
     #     return resolveActiveOrders(producerId=self.id)

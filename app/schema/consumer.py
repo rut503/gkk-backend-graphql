@@ -6,6 +6,7 @@ from app.models.consumer import ConsumerModel
 from app.schema.address import Address
 
 
+# TODO: Add validations to all fields
 @strawberry.type
 class Consumer:
     id: strawberry.ID
@@ -21,6 +22,7 @@ class Consumer:
     dateCreated: date
     dateUpdated: date
 
+    # TODO: fix circular import problem first
     # @strawberry.field
     # def activeOrders(self) -> List[ActiveOrder]:
     #     return resolveActiveOrders(consumerId=self.id)

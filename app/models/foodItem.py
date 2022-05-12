@@ -1,16 +1,17 @@
-from mongoengine import Document, IntField, StringField, DateTimeField, ObjectIdField, ListField, FloatField
+from mongoengine import Document, IntField, StringField, URLField, DateTimeField, ObjectIdField, ListField, FloatField
 
 
+# TODO: Add validations to all fields
 class FoodItemModel(Document):
     producerId = ObjectIdField()
-    dietPreferences = ListField(StringField())
+    dietPreferences = ListField(StringField()) # TODO: Make this Enum Field
     description = StringField()
-    photo = StringField()
+    photo = URLField()
     price = FloatField()
     rating = IntField()
     name = StringField()
     portionSize = FloatField()
-    spiciness = IntField()
+    spiciness = IntField() # TODO: Make this Enum Field
     allergies = ListField(StringField())
     dateCreated = DateTimeField()
     dateUpdated = DateTimeField()

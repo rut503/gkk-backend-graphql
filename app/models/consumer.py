@@ -1,14 +1,15 @@
-from mongoengine import Document, IntField, StringField, DateTimeField, ObjectIdField, EmbeddedDocumentField, ListField
+from mongoengine import Document, IntField, StringField, EmailField, URLField, DateTimeField, ObjectIdField, EmbeddedDocumentField, ListField
 
 from app.models.address import Address
 
 
+# TODO: Add validations to all fields
 class ConsumerModel(Document):
     firstName = StringField()
     lastName = StringField()
     phoneNumber = StringField()
-    email = StringField()
-    photo = StringField()
+    email = EmailField()
+    photo = URLField()
     bio = StringField()
     address = EmbeddedDocumentField(Address)
     rating = IntField()

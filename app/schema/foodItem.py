@@ -5,21 +5,28 @@ import strawberry
 from app.models.foodItem import FoodItemModel
 
 
+# TODO: Add validations to all fields
 @strawberry.type
 class FoodItem:
     id: strawberry.ID
     producerId: strawberry.ID
-    dietPreferences: List[str]
+    dietPreferences: List[str] # TODO: Make this Enum Field
     description: str
     photo: str
     price: float
     rating: int
     name: str
     portionSize: float
-    spiciness: int
+    spiciness: int # TODO: Make this Enum Field
     allergies: List[str]
     dateCreated: date
     dateUpdated: date
+
+    # TODO: fix circular import problem first
+    # @strawberry.field
+    # def producer(self) -> Producer:
+    #     return resolveProducer(id=self.producerId)
+
 
 def resolveFoodItem(id: strawberry.ID) -> FoodItem:
     foodItem = FoodItemModel.objects(id=id).first()
