@@ -9,6 +9,7 @@ uvicorn = {extras = ["standard"], version = "*"}
 mongoengine = "*"
 pymongo = {extras = ["srv"], version = "*"}
 flake8 = "*"
+pytest = "*"
 
 [dev-packages]
 
