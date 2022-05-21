@@ -8,6 +8,7 @@ strawberry-graphql = {extras = ["fastapi"], version = "*"}
 uvicorn = {extras = ["standard"], version = "*"}
 mongoengine = "*"
 pymongo = {extras = ["srv"], version = "*"}
+flake8 = "*"
 
 [dev-packages]
 
