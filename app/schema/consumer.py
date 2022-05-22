@@ -27,25 +27,28 @@ class Consumer:
     # def activeOrders(self) -> List[ActiveOrder]:
     #     return resolveActiveOrders(consumerId=self.id)
 
+
 def resolveConsumer(id: strawberry.ID) -> Consumer:
     consumer = ConsumerModel.objects(id=id).first()
 
-    address = Address(street=consumer.address.street,
-                      city=consumer.address.city,
-                      state=consumer.address.state,
-                      zipCode=consumer.address.zipCode,
-                     )
-    
-    return Consumer(id=consumer.id,
-                    firstName=consumer.firstName,
-                    lastName=consumer.lastName,
-                    phoneNumber=consumer.phoneNumber,
-                    email=consumer.email,
-                    photo=consumer.photo,
-                    bio=consumer.bio,
-                    address=address,
-                    rating=consumer.rating,
-                    activeOrderIds=consumer.activeOrderIds,
-                    dateCreated=consumer.dateCreated,
-                    dateUpdated=consumer.dateUpdated
-                   )
+    address = Address(
+        street=consumer.address.street,
+        city=consumer.address.city,
+        state=consumer.address.state,
+        zipCode=consumer.address.zipCode,
+    )
+
+    return Consumer(
+        id=consumer.id,
+        firstName=consumer.firstName,
+        lastName=consumer.lastName,
+        phoneNumber=consumer.phoneNumber,
+        email=consumer.email,
+        photo=consumer.photo,
+        bio=consumer.bio,
+        address=address,
+        rating=consumer.rating,
+        activeOrderIds=consumer.activeOrderIds,
+        dateCreated=consumer.dateCreated,
+        dateUpdated=consumer.dateUpdated
+    )

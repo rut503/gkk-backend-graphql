@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import strawberry
 from fastapi import FastAPI
 from strawberry.fastapi import GraphQLRouter
-from mongoengine import *
+from mongoengine import connect
 
 from app.schema.rootQuery import Query
 from app.schema.mutation import Mutation

@@ -22,30 +22,35 @@ class ReviewForFoodItem:
     def consumer(self) -> Consumer:
         return resolveConsumer(id=self.consumerId)
 
+
 def resolveReviewForFoodItem(id: strawberry.ID) -> ReviewForFoodItem:
     review = ReviewForFoodItemModel.objects(id=id).first()
-    return ReviewForFoodItem( id=review.id,
-                              foodItemId=review.foodItemId,
-                              consumerId=review.consumerId,
-                              rating=review.rating,
-                              title=review.title,
-                              description=review.description,
-                              dateCreated=review.dateCreated,
-                              dateUpdated=review.dateUpdated
-                            )
+    return ReviewForFoodItem(
+        id=review.id,
+        foodItemId=review.foodItemId,
+        consumerId=review.consumerId,
+        rating=review.rating,
+        title=review.title,
+        description=review.description,
+        dateCreated=review.dateCreated,
+        dateUpdated=review.dateUpdated
+    )
+
 
 def resolveReviewsForFoodItem(foodItemId: strawberry.ID) -> List[ReviewForFoodItem]:
     reviews = ReviewForFoodItemModel.objects(foodItemId=foodItemId)
     listOfReviews = []
     for review in reviews:
-        listOfReviews.append( ReviewForFoodItem( id=review.id,
-                                                 foodItemId=review.foodItemId,
-                                                 consumerId=review.consumerId,
-                                                 rating=review.rating,
-                                                 title=review.title,
-                                                 description=review.description,
-                                                 dateCreated=review.dateCreated,
-                                                 dateUpdated=review.dateUpdated
-                                               )
-                            )
+        listOfReviews.append(
+            ReviewForFoodItem(
+                id=review.id,
+                foodItemId=review.foodItemId,
+                consumerId=review.consumerId,
+                rating=review.rating,
+                title=review.title,
+                description=review.description,
+                dateCreated=review.dateCreated,
+                dateUpdated=review.dateUpdated
+            )
+        )
     return listOfReviews

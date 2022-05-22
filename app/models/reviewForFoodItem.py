@@ -10,7 +10,7 @@ class ReviewForFoodItemModel(Document):
     description = StringField()
     dateCreated = DateTimeField()
     dateUpdated = DateTimeField()
-    
+
     meta = {
         "db_alias": "gkk",
         "collection": "reviewForFoodItem"

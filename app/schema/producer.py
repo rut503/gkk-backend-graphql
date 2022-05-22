@@ -28,32 +28,35 @@ class Producer:
     @strawberry.field
     def foodItems(self) -> List[FoodItem]:
         return resolveFoodItems(producerId=self.id)
-    
+
     # TODO: fix circular import problem first
     # @strawberry.field
     # def activeOrders(self) -> List[ActiveOrder]:
     #     return resolveActiveOrders(producerId=self.id)
 
-def resolveProducer(id: strawberry.ID) -> Producer:
-        producer = ProducerModel.objects(id=id).first()
 
-        address = Address( street=producer.address.street,
-                           city=producer.address.city,
-                           state=producer.address.state,
-                           zipCode=producer.address.zipCode )
-        
-        return Producer(
-            id=producer.id,
-            firstName=producer.firstName,
-            lastName=producer.lastName,
-            phoneNumber=producer.phoneNumber,
-            email=producer.email,
-            photo=producer.photo,
-            bio=producer.bio,
-            address=address,
-            foodItemIds=producer.foodItemIds,
-            rating=producer.rating,
-            activeOrderIds=producer.activeOrderIds,
-            dateCreated=producer.dateCreated,
-            dateUpdated=producer.dateUpdated
-        )
+def resolveProducer(id: strawberry.ID) -> Producer:
+    producer = ProducerModel.objects(id=id).first()
+
+    address = Address(
+        street=producer.address.street,
+        city=producer.address.city,
+        state=producer.address.state,
+        zipCode=producer.address.zipCode
+    )
+
+    return Producer(
+        id=producer.id,
+        firstName=producer.firstName,
+        lastName=producer.lastName,
+        phoneNumber=producer.phoneNumber,
+        email=producer.email,
+        photo=producer.photo,
+        bio=producer.bio,
+        address=address,
+        foodItemIds=producer.foodItemIds,
+        rating=producer.rating,
+        activeOrderIds=producer.activeOrderIds,
+        dateCreated=producer.dateCreated,
+        dateUpdated=producer.dateUpdated
+    )

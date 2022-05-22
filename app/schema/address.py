@@ -6,5 +6,5 @@ import strawberry
 class Address:
     street: str
     city: str
-    state: str # TODO: Make this Enum Field
+    state: str  # TODO: Make this Enum Field
     zipCode: str

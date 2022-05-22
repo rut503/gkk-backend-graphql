@@ -15,8 +15,8 @@ class ActiveOrder:
     producerId: strawberry.ID
     orderedFoodItems: List[OrderedFoodItem]
     totalPrice: float
-    status: str # TODO: Make this Enum Field
-    mealTime: str # TODO: Make this Enum Field
+    status: str  # TODO: Make this Enum Field
+    mealTime: str  # TODO: Make this Enum Field
     orderDueDatetime: date
     messageForProducer: str
     dateCreated: date
@@ -35,34 +35,38 @@ def resolveActiveOrder(id: strawberry.ID) -> ActiveOrder:
     activeOrder = ActiveOrderModel.objects(id=id).first()
     listOfOrderedFoodItems = []
     for orderedFoodItem in activeOrder.orderedFoodItems:
-        listOfOrderedFoodItems.append( OrderedFoodItem( dietPreferences=orderedFoodItem.dietPreferences,
-                                                        description=orderedFoodItem.description,
-                                                        photo=orderedFoodItem.photo,
-                                                        price=orderedFoodItem.price,
-                                                        rating=orderedFoodItem.rating,
-                                                        name=orderedFoodItem.name,
-                                                        portionSize=orderedFoodItem.portionSize,
-                                                        spiciness=orderedFoodItem.spiciness,
-                                                        allergies=orderedFoodItem.allergies,
-                                                        quantity=orderedFoodItem.quantity
-                                                      )
-                                     )
+        listOfOrderedFoodItems.append(
+            OrderedFoodItem(
+                dietPreferences=orderedFoodItem.dietPreferences,
+                description=orderedFoodItem.description,
+                photo=orderedFoodItem.photo,
+                price=orderedFoodItem.price,
+                rating=orderedFoodItem.rating,
+                name=orderedFoodItem.name,
+                portionSize=orderedFoodItem.portionSize,
+                spiciness=orderedFoodItem.spiciness,
+                allergies=orderedFoodItem.allergies,
+                quantity=orderedFoodItem.quantity
+            )
+        )
 
-    return ActiveOrder( id=activeOrder.id,
-                        consumerId=activeOrder.consumerId,
-                        producerId=activeOrder.producerId,
-                        orderedFoodItems=listOfOrderedFoodItems,
-                        totalPrice=activeOrder.totalPrice,
-                        status=activeOrder.status,
-                        mealTime=activeOrder.mealTime,
-                        orderDueDatetime=activeOrder.orderDueDatetime,
-                        messageForProducer=activeOrder.messageForProducer,
-                        dateCreated=activeOrder.dateCreated,
-                        dateUpdated=activeOrder.dateUpdated
-                      )
+    return ActiveOrder(
+        id=activeOrder.id,
+        consumerId=activeOrder.consumerId,
+        producerId=activeOrder.producerId,
+        orderedFoodItems=listOfOrderedFoodItems,
+        totalPrice=activeOrder.totalPrice,
+        status=activeOrder.status,
+        mealTime=activeOrder.mealTime,
+        orderDueDatetime=activeOrder.orderDueDatetime,
+        messageForProducer=activeOrder.messageForProducer,
+        dateCreated=activeOrder.dateCreated,
+        dateUpdated=activeOrder.dateUpdated
+    )
 
-def resolveActiveOrders( 
-    producerId: Optional[strawberry.ID] = strawberry.UNSET, 
+
+def resolveActiveOrders(
+    producerId: Optional[strawberry.ID] = strawberry.UNSET,
     consumerId: Optional[strawberry.ID] = strawberry.UNSET
 ) -> List[ActiveOrder]:
     if producerId and consumerId:
@@ -78,30 +82,33 @@ def resolveActiveOrders(
     for activeOrder in activeOrders:
         listOfOrderedFoodItems = []
         for orderedFoodItem in activeOrder.orderedFoodItems:
-            listOfOrderedFoodItems.append( OrderedFoodItem( dietPreferences=orderedFoodItem.dietPreferences,
-                                                            description=orderedFoodItem.description,
-                                                            photo=orderedFoodItem.photo,
-                                                            price=orderedFoodItem.price,
-                                                            rating=orderedFoodItem.rating,
-                                                            name=orderedFoodItem.name,
-                                                            portionSize=orderedFoodItem.portionSize,
-                                                            spiciness=orderedFoodItem.spiciness,
-                                                            allergies=orderedFoodItem.allergies,
-                                                            quantity=orderedFoodItem.quantity
-                                                          )
-                                         )
-        listOfActiveOrders.append( ActiveOrder( id=activeOrder.id,
-                                                consumerId=activeOrder.consumerId,
-                                                producerId=activeOrder.producerId,
-                                                orderedFoodItems=listOfOrderedFoodItems,
-                                                totalPrice=activeOrder.totalPrice,
-                                                status=activeOrder.status,
-                                                mealTime=activeOrder.mealTime,
-                                                orderDueDatetime=activeOrder.orderDueDatetime,
-                                                messageForProducer=activeOrder.messageForProducer,
-                                                dateCreated=activeOrder.dateCreated,
-                                                dateUpdated=activeOrder.dateUpdated
-                                              )
-
-                                 )
+            listOfOrderedFoodItems.append(
+                OrderedFoodItem(
+                    dietPreferences=orderedFoodItem.dietPreferences,
+                    description=orderedFoodItem.description,
+                    photo=orderedFoodItem.photo,
+                    price=orderedFoodItem.price,
+                    rating=orderedFoodItem.rating,
+                    name=orderedFoodItem.name,
+                    portionSize=orderedFoodItem.portionSize,
+                    spiciness=orderedFoodItem.spiciness,
+                    allergies=orderedFoodItem.allergies,
+                    quantity=orderedFoodItem.quantity
+                )
+            )
+        listOfActiveOrders.append(
+            ActiveOrder(
+                id=activeOrder.id,
+                consumerId=activeOrder.consumerId,
+                producerId=activeOrder.producerId,
+                orderedFoodItems=listOfOrderedFoodItems,
+                totalPrice=activeOrder.totalPrice,
+                status=activeOrder.status,
+                mealTime=activeOrder.mealTime,
+                orderDueDatetime=activeOrder.orderDueDatetime,
+                messageForProducer=activeOrder.messageForProducer,
+                dateCreated=activeOrder.dateCreated,
+                dateUpdated=activeOrder.dateUpdated
+            )
+        )
     return listOfActiveOrders

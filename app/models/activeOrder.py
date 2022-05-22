@@ -9,8 +9,8 @@ class ActiveOrderModel(Document):
     producerId = ObjectIdField()
     orderedFoodItems = EmbeddedDocumentListField(OrderedFoodItemModel)
     totalPrice = FloatField()
-    status = StringField() # TODO: Make this Enum Field
-    mealTime = StringField() # TODO: Make this Enum Field
+    status = StringField()  # TODO: Make this Enum Field
+    mealTime = StringField()  # TODO: Make this Enum Field
     orderDueDatetime = DateTimeField()
     messageForProducer = StringField()
     dateCreated = DateTimeField()

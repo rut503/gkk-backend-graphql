@@ -5,5 +5,5 @@ from mongoengine import EmbeddedDocument, StringField
 class Address(EmbeddedDocument):
     street = StringField()
     city = StringField()
-    state = StringField() # TODO: Make this Enum Field
+    state = StringField()  # TODO: Make this Enum Field
     zipCode = StringField()

@@ -15,16 +15,16 @@ class Query:
     producer: Producer = strawberry.field(resolver=resolveProducer)
 
     consumer: Consumer = strawberry.field(resolver=resolveConsumer)
-    
+
     foodItem: FoodItem = strawberry.field(resolver=resolveFoodItem)
     foodItems: List[FoodItem] = strawberry.field(resolver=resolveFoodItems)
 
     reviewForProducer: ReviewForProducer = strawberry.field(resolver=resolveReviewForProducer)
     reviewsForProducer: List[ReviewForProducer] = strawberry.field(resolver=resolveReviewsForProducer)
-    
+
     reviewForConsumer: ReviewForConsumer = strawberry.field(resolver=resolveReviewForConsumer)
     reviewsForConsumer: List[ReviewForConsumer] = strawberry.field(resolver=resolveReviewsForConsumer)
-    
+
     reviewForFoodItem: ReviewForFoodItem = strawberry.field(resolver=resolveReviewForFoodItem)
     reviewsForFoodItem: List[ReviewForFoodItem] = strawberry.field(resolver=resolveReviewsForFoodItem)
 
