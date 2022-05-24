@@ -1,2 +1,2 @@
-def test_hi():
-    assert "hello world" == "hello world"
+def test_hello():
+    assert "hi" == "hi"

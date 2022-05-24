@@ -14,3 +14,10 @@
 3. Run server
     - `pipenv run uvicorn app.main:app --reload`
 
+=========================================================
+To run tests,
+- Be inside of a virtual environment.
+- Be in root dir, `gkk-backend-graphql`
+- Package, Build and Install code by
+    - `pipenv install -e .`
+- Run `pytest`

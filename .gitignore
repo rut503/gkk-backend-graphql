@@ -10,5 +10,9 @@ __pycache__/
 # Pytest Cache
 .pytest_cache/
 
+# Build
+build/
+gkk_backend_graphql.egg-info/
+
 # macOS
 .DS_Store
