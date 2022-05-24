@@ -8,10 +8,10 @@ strawberry-graphql = {extras = ["fastapi"], version = "*"}
 uvicorn = {extras = ["standard"], version = "*"}
 mongoengine = "*"
 pymongo = {extras = ["srv"], version = "*"}
-flake8 = "*"
-pytest = "*"
 
 [dev-packages]
+flake8 = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.10"

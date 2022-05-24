@@ -30,3 +30,7 @@ class Query:
 
     activeOrder: ActiveOrder = strawberry.field(resolver=resolveActiveOrder)
     activeOrders: List[ActiveOrder] = strawberry.field(resolver=resolveActiveOrders)
+
+    @strawberry.field
+    def hello() -> str:
+        return "World"
