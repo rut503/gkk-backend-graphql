@@ -6,7 +6,7 @@ from strawberry.fastapi import GraphQLRouter
 from mongoengine import connect
 
 from app.schema.rootQuery import Query
-from app.schema.mutation import Mutation
+from app.schema.rootMutation import Mutation
 
 load_dotenv()
 MONGODB_URL = os.getenv('MONGODB_URL')

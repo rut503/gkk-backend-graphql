@@ -1,0 +1,197 @@
+query{
+  hello
+}
+
+query {
+  producer(id: "627b38840b85528df3ca06f4") {
+    id
+    firstName
+    lastName
+    phoneNumber
+    email
+    photo
+    bio
+    address {
+      street
+      city
+      state
+      zipCode
+    }
+    foodItemIds
+    rating
+    activeOrderIds
+    dateCreated
+    dateUpdated
+    foodItems{
+      id
+      name
+    }
+  }
+}
+
+query {
+  consumer(id: "627b38880b85528df3ca06f8") {
+    id
+    firstName
+    lastName
+    phoneNumber
+    email
+    photo
+    bio
+    address {
+      street
+      city
+      state
+      zipCode
+    }
+    rating
+    activeOrderIds
+    dateCreated
+    dateUpdated
+  }
+}
+
+query{
+  foodItem(id:"627b388e0b85528df3ca06fd"){
+    id
+    producerId
+    dietPreferences
+    description
+    photo
+    price
+    rating
+    name
+    portionSize
+    spiciness
+    allergies
+    dateCreated
+    dateUpdated
+  }
+}
+
+query{
+  reviewsForProducer(producerId:"6274cb3941f781a805943d9f"){
+    id
+    producerId
+    consumerId
+    consumer{
+      firstName
+      lastName
+			photo
+    }
+    rating
+    title
+    description
+    dateCreated
+    dateUpdated
+  }
+}
+
+query{
+  reviewsForConsumer(consumerId:"6274cb5041f781a805943da5"){
+    id
+    producerId
+    producer{
+      firstName
+      lastName
+      photo
+    }
+    consumerId
+    rating
+    title
+    description
+    dateCreated
+    dateUpdated
+  }
+}
+
+query{
+  reviewsForFoodItem(foodItemId:"6274cb5741f781a805943da7"){
+    id
+    foodItemId
+    consumerId
+    consumer{
+      firstName
+      lastName
+      photo
+    }
+    rating
+    title
+    description
+    dateCreated
+    dateUpdated
+  }
+}
+
+query{
+  activeOrder(id: "627b38930b85528df3ca0706"){
+    consumerId
+    producerId
+    totalPrice
+    status
+    mealTime
+    orderDueDatetime
+    messageForProducer
+    dateCreated
+    dateUpdated
+    orderedFoodItems{
+      dietPreferences
+      description
+      photo
+      price
+      rating
+      name
+      portionSize
+      spiciness
+      allergies
+      quantity
+    }
+    consumer{
+      firstName
+      lastName
+      photo
+    }
+    producer{
+      firstName
+      lastName
+      photo
+    }
+  }
+}
+
+query{
+  activeOrders(producerId:"627b38840b85528df3ca06f4",consumerId:"627b38890b85528df3ca06fa"){
+    id
+    consumerId
+    producerId
+    totalPrice
+    status
+    mealTime
+    orderDueDatetime
+    messageForProducer
+    dateCreated
+    dateUpdated
+    orderedFoodItems{
+      dietPreferences
+      description
+      photo
+      price
+      rating
+      name
+      portionSize
+      spiciness
+      allergies
+      quantity
+    }
+    consumer{
+      firstName
+      lastName
+      photo
+    }
+    producer{
+      firstName
+      lastName
+      photo
+    }
+  }
+}
